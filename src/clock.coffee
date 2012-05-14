@@ -1,5 +1,4 @@
 tz = require('timezone').tz
-tz.timezones(require('timezone/timezones/northamerica'))
 
 defaultTimezone = 'America/Los_Angeles'
 
@@ -8,17 +7,9 @@ module.exports = clock =
   now: ->
     Date.now()
 
-  pacific: tz.specialize(defaultTimezone)
+  pacific: tz require('timezone/zones/America/Los_Angeles'), defaultTimezone
 
   tz: tz
-
-  # Return a date of the specific day (Sunday, Monday, etc) for the Sun-Sat week of the given time
-  dayInWeek: (time, day, timezone = defaultTimezone) ->
-    dayIndex = tz.locales().en_US.day.full.indexOf(day)
-    if tz(time, '%w', timezone) == '0'
-      tz(time, "+#{dayIndex} days", timezone)
-    else
-      tz(time, '-1 sunday', "+#{dayIndex} days", timezone)
 
   daySuffix: (time, timezone = defaultTimezone) ->
     switch tz(time, '%d')[1]
@@ -29,3 +20,24 @@ module.exports = clock =
       when '3'
         'rd'
       else 'th'
+
+  # Am I being bad here?
+  extendNumber: ->
+    if not Number::.milliseconds
+      for [unit, multiplier, subunit] in [
+        ['millisecond', 1]
+        ['second', 1000, 'milliseconds']
+        ['minute', 60, 'seconds']
+        ['hour', 60, 'minutes']
+        ['day', 24, 'hours']
+        ['week', 7, 'days']
+      ]
+        do (unit, multiplier, subunit) ->
+          subunitCount = subunit? and multiplier[subunit] or multiplier
+          for prop in [unit, unit + 's']
+            do (prop) ->
+              Object.defineProperty Number::, prop,
+                enumerable: false
+                get: ->
+                  @ * subunitCount
+

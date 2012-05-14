@@ -1,16 +1,14 @@
 clock = require '../src/clock'
+clock.extendNumber()
 
 describe 'clock', ->
 
-  describe 'dayInWeek', ->
-    it 'it should get you to the previous sunday from saturday', ->
-      expect(clock.pacific(clock.dayInWeek('2011-10-08 23:59', 'Sunday', 'America/Los_Angeles'), '%c')).toEqual "Sun 02 Oct 2011 11:59:00 PM UTC"
+  describe 'tz', ->
+    it 'parses json', ->
+      expect(clock.tz('2012-03-11T09:00:00.000')).toEqual Date.parse('2012-03-11T09:00:00.000Z').valueOf()
 
-    it 'should remain unchanged on sunday', ->
-      expect(clock.pacific(clock.dayInWeek('2011-10-09 00:01', 'Sunday', 'America/Los_Angeles'), '%c')).toEqual "Sun 09 Oct 2011 12:01:00 AM UTC"
-
-    it 'works for other days', ->
-      expect(clock.pacific(clock.dayInWeek('2011-10-09 00:01', 'Tuesday'), '%c')).toEqual "Tue 11 Oct 2011 12:01:00 AM UTC"
+    it 'parses pacific', ->
+      expect(clock.pacific('2012-04-01 12:00')).toEqual Date.parse('2012-04-01T19:00:00.000Z').valueOf()
 
   describe 'daySuffix', ->
     it 'returns st for 1s', ->
@@ -35,3 +33,12 @@ describe 'clock', ->
       expect(clock.daySuffix('2011-10-07')).toEqual 'th'
       expect(clock.daySuffix('2011-10-15')).toEqual 'th'
       expect(clock.daySuffix('2011-10-27')).toEqual 'th'
+
+  describe 'extendNumber', ->
+    it 'returns millisecond equivelants of various time units', ->
+      expect(1.millisecond).toEqual 1
+      expect(1.second).toEqual 1 * 1000
+      expect(2.seconds).toEqual 2 * 1000
+      expect(1.hour).toEqual 1 * 60 * 60 * 1000
+      expect(3.days).toEqual 3 * 24 * 60 * 60 * 1000
+      expect(4.weeks).toEqual 4 * 7 * 24 * 60 * 60 * 1000
