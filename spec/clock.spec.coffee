@@ -47,7 +47,7 @@ describe 'clock', ->
 
     it 'formats a date in pacific timezone', ->
       date = new Date(2012, 0, 1, 9, 0) # Jan 1 9am
-      expect(clock.pacific(date.getTime(), "%m/%d/%Y")).toEqual '01/01/2012'
+      expect(clock.pacific(date.valueOf(), "%m/%d/%Y")).toEqual '01/01/2012'
 
 
 
