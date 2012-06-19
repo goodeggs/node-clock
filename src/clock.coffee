@@ -1,4 +1,4 @@
-tz = require('timezone').tz
+tz = require('timezone')
 
 defaultTimezone = 'America/Los_Angeles'
 
