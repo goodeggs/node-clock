@@ -7,11 +7,11 @@ module.exports = clock =
   now: ->
     Date.now()
 
-  pacific: tz require('timezone/America'), defaultTimezone
+  pacific: tz require('timezone/America/Los_Angeles'), defaultTimezone
 
   tz: tz
 
-  daySuffix: (time, timezone = defaultTimezone) ->
+  daySuffix: (time) ->
     switch tz(time, '%d')[1]
       when '1'
         'st'
