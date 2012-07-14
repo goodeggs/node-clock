@@ -7,7 +7,7 @@ module.exports = clock =
   now: ->
     Date.now()
 
-  pacific: tz require('timezone/zones/America/Los_Angeles'), defaultTimezone
+  pacific: tz require('timezone/America'), defaultTimezone
 
   tz: tz
 
