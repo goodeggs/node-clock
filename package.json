@@ -30,6 +30,7 @@
   },
   "main": "lib/clock",
   "scripts": {
+    "pretest": "./node_modules/.bin/coffee -c -o lib src",
     "test": "cake spec"
   }
 }
