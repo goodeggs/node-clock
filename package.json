@@ -21,7 +21,8 @@
     "MIT"
   ],
   "dependencies": {
-    "timezone": "~0.0.23"
+    "timezone": "~0.0.23",
+    "underscore": "~1.5.1"
   },
   "devDependencies": {
     "jasmine-node": "~1.11.0",
