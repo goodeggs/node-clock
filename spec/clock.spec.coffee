@@ -15,6 +15,9 @@ describe 'clock', ->
       date = new Date(clock.pacific '2012-01-01 09:00')
       expect(clock.utc(date.valueOf(), "%m/%d/%Y %H:%M")).toEqual '01/01/2012 17:00'
 
+    it 'has a tzid', ->
+      expect(clock.utc.tzid).toBeDefined()
+
   describe '.tz', ->
     describe 'parsing', ->
 

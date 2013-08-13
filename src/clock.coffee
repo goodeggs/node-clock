@@ -30,13 +30,12 @@ module.exports = clock =
   now: ->
     Date.now()
 
-  utc: tz
-
   tz: (args...) ->
     throw new Error('You must specify a valid tzid') if not validTzids[args[args.length - 1]]?
     tz(args...)
 
   # create convenience methods
+  utc: tzWithId('UTC')
   pacific: tzWithId('America/Los_Angeles')
   mountain: tzWithId('America/Denver')
   central: tzWithId('America/Chicago')
