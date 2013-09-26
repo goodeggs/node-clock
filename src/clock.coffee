@@ -1,5 +1,3 @@
-_ = require 'underscore'
-
 zoneData = [
   require 'timezone/America/Los_Angeles'
   require 'timezone/America/Denver'
@@ -7,16 +5,18 @@ zoneData = [
   require 'timezone/America/New_York'
 ]
 
-tzids = _(zoneData).chain()
-  .map (data) ->
-    _(data.zones).keys()
-  .flatten()
-  .value()
-  .concat(['UTC'])
+tzids = ['UTC']
+validTzids = 'UTC': yes
 
-validTzids = _(tzids).groupBy((tzid) -> tzid)
+do ->
+  for zone in zoneData
+    for name, data of zone.zones
+      tzids.push name
+      validTzids[name] = yes
 
-tz = require('timezone')(_(zoneData).values())
+  null
+
+tz = require('timezone')(zoneData)
 
 tzWithId = (tzid) ->
   timezone = tz(tzid)
