@@ -1,6 +1,6 @@
 {
   "name": "node-clock",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A simple clock for node.js apps",
   "homepage": "http://github.com/goodeggs/node-clock",
   "repository": {
@@ -11,18 +11,20 @@
     "clock",
     "timezone"
   ],
-  "author": "Randy Puro <randy@goodeggsinc.com>",
+  "author": "Randy Puro <randy@goodeggs.com>",
   "contributors": [
-    "Bob Zoller <bob@goodeggsinc.com>",
-    "Alon Salant <alon@goodeggsinc.com>"
+    "Adam Hull <adam@goodeggs.com>",
+    "Alex Gorbatchev <alex@goodeggs.com>",
+    "Alon Salant <alon@goodeggs.com>",
+    "Bob Zoller <bob@goodeggs.com>",
+    "Max Edmands <max@goodeggs.com>"
   ],
-  "maintainers": "Randy Puro <randy@goodeggsinc.com>",
+  "maintainers": "Randy Puro <randy@goodeggs.com>",
   "licenses": [
     "MIT"
   ],
   "dependencies": {
-    "timezone": "~0.0.23",
-    "underscore": "~1.5.1"
+    "timezone": "~0.0.23"
   },
   "devDependencies": {
     "jasmine-node": "~1.11.0",
